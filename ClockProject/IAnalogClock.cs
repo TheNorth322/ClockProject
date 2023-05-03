@@ -2,5 +2,6 @@
 
 public interface IAnalogClock
 {
-    string GetTime();
+    void GetTime(out ushort hourArrowDegree, out ushort minuteArrowDegree);
+    void SetTime(ushort hourArrowDegree, ushort minuteArrowDegree);
 }

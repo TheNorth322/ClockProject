@@ -7,11 +7,27 @@ public class DigitalClock : IDigitalClock
 
     public DigitalClock(byte hours, byte minutes)
     {
+        SetTime(hours, minutes);        
+    }
+    
+    public void SetTime(byte hours, byte minutes)
+    {
+        ValidateTime(hours, minutes);
         _hours = hours;
         _minutes = minutes;
     }
-    public string GetTime()
+
+    public void GetTime(out byte hours, out byte minutes)
     {
-        return $"{_hours}:{_minutes}";
+        hours = _hours;
+        minutes = _minutes;
+    } 
+    
+    private void ValidateTime(byte hours, byte minutes)
+    {
+        if (hours < 0 || hours > 24)
+            throw new ArgumentException(nameof(hours));
+        if (minutes < 0 || minutes > 60)
+            throw new ArgumentException(nameof(minutes));
     }
 }

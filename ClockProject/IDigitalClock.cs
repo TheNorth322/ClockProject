@@ -2,5 +2,6 @@
 
 public interface IDigitalClock
 {
-    string GetTime();
+    void GetTime(out byte hours, out byte minutes);
+    void SetTime(byte hours, byte minutes);
 }

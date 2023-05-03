@@ -6,11 +6,20 @@ public class AnalogToDigitalClockAdapter : IDigitalClock
 
     public AnalogToDigitalClockAdapter(IAnalogClock analogClock)
     {
-        _analogClock = analogClock;
+        _analogClock = analogClock ?? throw new ArgumentNullException(nameof(analogClock));
     }
     
-    public string GetTime()
+    public void GetTime(out byte hours, out byte minutes)
     {
-       return _analogClock.GetTime(); 
+        ushort hourArrowDegree, minutesArrowDegree;
+        _analogClock.GetTime(out hourArrowDegree, out minutesArrowDegree);
+
+        hours = (byte)(hourArrowDegree / 30);
+        minutes = (byte)(minutesArrowDegree / 6);
+    }
+
+    public void SetTime(byte hours, byte minutes)
+    {
+        _analogClock.SetTime((ushort)(hours * 30), (ushort)(minutes * 6));
     }
 }

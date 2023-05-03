@@ -4,6 +4,6 @@ public class TimeChecker
 {
     public string CheckTime(IDigitalClock clock)
     {
-        return clock.GetTime();
+        // return clock.GetTime();
     } 
 }
